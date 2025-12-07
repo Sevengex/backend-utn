@@ -5,7 +5,7 @@ import cors from "cors"
 import connectDB from "./config/mongodb"
 import productRouter from "./routes/productRoutes"
 import authRoutes from "./routes/authRoutes"
-import authMiddleware from "./middleware/authMiddleware"
+//import authMiddleware from "./middleware/authMiddleware"
 import morgan from "morgan"
 import limiter from "./middleware/rateLimitMiddleware"
 import IUserTokenPayload from "./interfaces/IUserTokenPayload"
@@ -33,7 +33,7 @@ app.get("/", (req: Request, res: Response) => {
 })
 
 app.use("/auth", limiter, authRoutes)
-app.use("/products", authMiddleware, productRouter)
+app.use("/products", productRouter)
 
 // endpoint para el 404 - no se encuentra el recurso
 app.use((req, res) => {

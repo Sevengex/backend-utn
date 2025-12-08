@@ -9,15 +9,15 @@ import { createProductSchema } from "../validators/productValidator"
 class ProductController {
   static getAllProducts = async (req: Request, res: Response): Promise<void | Response> => {
     try {
-      const queyParams = req.query
+      const queryParams = req.query
 
-      const { name, stock, category, minPrice, maxPrice } = queyParams
+      const { name, stock, category, minPrice, maxPrice } = queryParams
 
       const filter: any = {}
 
-      if (name) filter.name = new RegExp(String(name), "i ")
+      if (name) filter.name = new RegExp(String(name), "i")
       if (stock) filter.stock = Number(stock)
-      if (category) filter.category = new RegExp(String(category), "i ")
+      if (category) filter.category = new RegExp(String(category), "i")
       if (minPrice || maxPrice) {
         filter.price = {}
         //masPrice -> si tengo precio maximo quiero un objeto con precio menor
@@ -26,7 +26,7 @@ class ProductController {
         if (maxPrice) filter.price.$lt = maxPrice
       }
 
-      const products = await Product.find(queyParams)
+      const products = await Product.find(queryParams)
       res.json({ success: true, data: products })
     } catch (e) {
       const error = e as Error

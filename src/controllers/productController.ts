@@ -26,7 +26,7 @@ class ProductController {
         if (maxPrice) filter.price.$lt = maxPrice
       }
 
-      const products = await Product.find(queryParams)
+      const products = await Product.find(filter)
       res.json({ success: true, data: products })
     } catch (e) {
       const error = e as Error

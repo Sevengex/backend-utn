@@ -4,6 +4,9 @@ import jwt from "jsonwebtoken"
 import User from "../model/UserModel"
 
 class authController {
+  //http://localhost:3000/auth/register
+  //method: POST 
+  //body: {"email":"leonardo@gmail.com", "password": pepe123}
   static Register = async (req: Request, res: Response): Promise<void | Response> => {
     try {
       const { email, password } = req.body
@@ -12,11 +15,20 @@ class authController {
         return res.status(400).json({ success: false, message: "Datos invalidos" })
       }
 
+      const user = await User.findOne({ email })
+
+      if (user) {
+        return res.status(409).json({ success: false, error: "El usuario ya existe en la base de datos." })
+      }
+
       // crear el hash de la contraseña
       const hash = await bcrypt.hash(password, 10)
       const newUser = new User({ email, password: hash })
 
       await newUser.save()
+
+      //generar un token
+
       res.json({ success: true, data: newUser })
     } catch (e) {
       const error = e as Error

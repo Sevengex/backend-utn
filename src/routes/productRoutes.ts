@@ -12,7 +12,7 @@ const productRouter = Router()
 productRouter.get("/", ProductController.getAllProducts)
 productRouter.get("/:id", ProductController.getProduct)
 productRouter.post("/", authMiddleware, ProductController.addProduct)
-productRouter.patch("/:id", authMiddleware, ProductController.updateProduct)
+productRouter.patch("/:id", ProductController.updateProduct)
 productRouter.delete("/:id", authMiddleware, ProductController.deleteProduct)
 
 export default productRouter

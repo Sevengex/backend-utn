@@ -10,4 +10,5 @@ const schemaValidator = z.object({
 
 export const createProductSchema = schemaValidator
 
-export const updateProductSchema = schemaValidator.partial() // Para el updateProduct
+export const updateProductSchema = schemaValidator.partial()
+// Para el updateProduct

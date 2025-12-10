@@ -7,7 +7,7 @@ import productRouter from "./routes/productRoutes"
 import authRoutes from "./routes/authRoutes"
 //import authMiddleware from "./middleware/authMiddleware"
 import morgan from "morgan"
-import limiter from "./middleware/rateLimitMiddleware"
+//import limiter from "./middleware/rateLimitMiddleware"
 import IUserTokenPayload from "./interfaces/IUserTokenPayload"
 import dotenv from "dotenv"
 
